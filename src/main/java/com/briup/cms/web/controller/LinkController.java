@@ -13,24 +13,49 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/link")
 
 public class LinkController {
     @Autowired
     private ILinkService linkService;
+
     @PostMapping("/add")
     @ApiOperation("添加链接")
-    public Message addlink(Link link){
+    public Message addlink(Link link) {
         linkService.saveOrUpdate(link);
         return MessageUtil.success();
     }
+
     @GetMapping("/deleteLink")
     @ApiOperation("根据id删除链接")
-    @ApiImplicitParam(name = "id" ,value = "链接id",paramType = "query",dataType = "int",required = true)
-    public Message deleteLink(int id){
+    @ApiImplicitParam(name = "id", value = "链接id", paramType = "query", dataType = "int", required = true)
+    public Message deleteLink(int id) {
         linkService.deleteLink(id);
         return MessageUtil.success();
+    }
+
+    @GetMapping("/queryById")
+    @ApiOperation("根据id查询")
+    @ApiImplicitParam(name = "id", value = "链接id", paramType = "query", dataType = "int", required = true)
+    public Message<Link> queryById(int id) {
+        Link link = linkService.findById(id);
+        return MessageUtil.success(link);
+    }
+    @PostMapping("/update")
+    @ApiOperation("修改链接")
+
+    public Message update(Link link){
+        linkService.saveOrUpdate(link);
+        return MessageUtil.success();
+    }
+    @GetMapping("/findAll")
+    @ApiOperation("查询所有链接")
+    public Message<List<Link>> findAll(){
+        List<Link> links = linkService.findAll();
+        return MessageUtil.success(links);
     }
 }
 

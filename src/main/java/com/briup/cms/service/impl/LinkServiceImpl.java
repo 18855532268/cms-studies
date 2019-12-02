@@ -28,12 +28,12 @@ public class LinkServiceImpl implements ILinkService {
 
     @Override
     public Link findById(int id) throws CustomerException {
-        return null;
-//        return linkDao.findById(id);
+//        return null;
+        return linkDao.queryById(id);
     }
 
     @Override
     public List<Link> findAll() throws CustomerException {
-        return null;
+        return linkDao.findAll();
     }
 }
