@@ -5,6 +5,7 @@ import com.briup.cms.service.ILinkService;
 import com.briup.cms.util.Message;
 import com.briup.cms.util.MessageUtil;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/link")
-
+@Api(description = "链接管理")
 public class LinkController {
     @Autowired
     private ILinkService linkService;
