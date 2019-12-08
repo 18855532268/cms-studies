@@ -27,11 +27,12 @@ public class ArticleServiceImpl implements IArticleService {
 
     @Override
     public void deleteById(int id) throws CustomerException {
+        arcetleDao.deleteById(id);
 
     }
 
     @Override
     public Article findById(int id) throws CustomerException {
-        return null;
+        return arcetleDao.queryById(id);
     }
 }
